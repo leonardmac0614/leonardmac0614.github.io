@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>bokeh嵌入hexo | 李二狗的妖孽人生</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Bokeh.set_log_level(“info”);         这是什么鬼？              {&quot;d470d1db-38fb-4eb6-9d2c-517867b6febf&quot;:{&quot;roots&quot;:{&quot;references&quot;:[{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.6,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;line_wi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bokeh嵌入hexo">
+<meta property="og:url" content="http://leonardmac.momentjs/2018/08/29/bokeh嵌入hexo/index.html">
+<meta property="og:site_name" content="李二狗的妖孽人生">
+<meta property="og:description" content="Bokeh.set_log_level(“info”);         这是什么鬼？              {&quot;d470d1db-38fb-4eb6-9d2c-517867b6febf&quot;:{&quot;roots&quot;:{&quot;references&quot;:[{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.6,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;line_wi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-30T06:59:30.706Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bokeh嵌入hexo">
+<meta name="twitter:description" content="Bokeh.set_log_level(“info”);         这是什么鬼？              {&quot;d470d1db-38fb-4eb6-9d2c-517867b6febf&quot;:{&quot;roots&quot;:{&quot;references&quot;:[{&quot;attributes&quot;:{&quot;line_alpha&quot;:0.6,&quot;line_color&quot;:&quot;#1f77b4&quot;,&quot;line_wi">
+    
+
+    
+        <link rel="alternate" href="/" title="李二狗的妖孽人生" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?eaf5895b4d7cf083ca944235170db342# enter Baidu Analytics hash key";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        
+<header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">李二狗的妖孽人生</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png">
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png">
+            <h2 id="name">leonardmac</h2>
+            <h3 id="title">工科狗</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>中国 上海</span>
+            <a id="follow" target="_blank" href="https://github.com/leonardmac0614/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                696
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                22
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/leonardmac0614/" target="_blank" title="github" class="tooltip">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://twitter.com/leonard_mac0614" target="_blank" title="twitter" class="tooltip">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://weibo.com/leonardmac" target="_blank" title="weibo" class="tooltip">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class="tooltip">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-bokeh嵌入hexo" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            bokeh嵌入hexo
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2018/08/29/bokeh嵌入hexo/">
+            <time datetime="2018-08-29T04:17:41.000Z" itemprop="datePublished">2018-08-29</time>
+        </a>
+    </div>
+
+
+                        
+                        
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p><link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.css" type="text/css"></p>
+<p><link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.css" type="text/css"><br> <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.13.0.min.js"></script><br> <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.13.0.min.js"></script><br> <script type="text/javascript"><br>            Bokeh.set_log_level(“info”);<br>        </script></p>
+<p>这是什么鬼？</p>
+<div class="bk-root" id="041fcd18-96f4-4db2-8d3c-cf250f22b40f"></div>
+
+<script type="application/json" id="6ca8f35e-e901-4447-b64f-8583c062390a">
+          {"d470d1db-38fb-4eb6-9d2c-517867b6febf":{"roots":{"references":[{"attributes":{"line_alpha":0.6,"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"a036cea8-bd04-4827-b7e8-ca597474069b","type":"Line"},{"attributes":{"line_alpha":0.1,"line_color":"#1f77b4","line_width":3,"x":{"field":"x"},"y":{"field":"y"}},"id":"86f9f561-cd84-476b-b6fc-1aaa478b7857","type":"Line"},{"attributes":{},"id":"2332b11a-7b71-4744-95c1-1b4b2020fc49","type":"UnionRenderers"},{"attributes":{},"id":"ec44b765-b3e3-4643-8a0d-b77b967106a0","type":"BasicTickFormatter"},{"attributes":{},"id":"3f26b214-d3c0-4833-9b4e-053ddc2367e7","type":"BasicTickFormatter"},{"attributes":{},"id":"c527e5ea-30df-40e8-aadf-d77791139011","type":"LinearScale"},{"attributes":{"data_source":{"id":"77268198-bca1-4d34-b5d1-187e16adb2ba","type":"ColumnDataSource"},"glyph":{"id":"a036cea8-bd04-4827-b7e8-ca597474069b","type":"Line"},"hover_glyph":null,"muted_glyph":null,"nonselection_glyph":{"id":"86f9f561-cd84-476b-b6fc-1aaa478b7857","type":"Line"},"selection_glyph":null,"view":{"id":"054b799c-7c17-4993-918e-50a1560631c1","type":"CDSView"}},"id":"ecbe0a85-6058-4700-a8ab-79b5302705e6","type":"GlyphRenderer"},{"attributes":{"formatter":{"id":"ec44b765-b3e3-4643-8a0d-b77b967106a0","type":"BasicTickFormatter"},"plot":{"id":"db7bb4a8-e48f-4e36-b4fa-9d4a20a19d6c","subtype":"Figure","type":"Plot"},"ticker":{"id":"9da096b7-fb75-4187-a375-cdcf4c248864","type":"BasicTicker"}},"id":"3653e9cb-bee7-498b-99fa-3e3ed5bc32c1","type":"LinearAxis"},{"attributes":{},"id":"9da096b7-fb75-4187-a375-cdcf4c248864","type":"BasicTicker"},{"attributes":{"plot":{"id":"db7bb4a8-e48f-4e36-b4fa-9d4a20a19d6c","subtype":"Figure","type":"Plot"},"ticker":{"id":"9da096b7-fb75-4187-a375-cdcf4c248864","type":"BasicTicker"}},"id":"28e409bc-f0a2-448f-b0a4-bbc03cb17d8e","type":"Grid"},{"attributes":{"formatter":{"id":"3f26b214-d3c0-4833-9b4e-053ddc2367e7","type":"BasicTickFormatter"},"plot":{"id":"db7bb4a8-e48f-4e36-b4fa-9d4a20a19d6c","subtype":"Figure","type":"Plot"},"ticker":{"id":"f0811953-591d-4239-81e3-d5c81c44aab6","type":"BasicTicker"}},"id":"cfcd0ddb-50f0-49b8-8364-ce47bc8babdb","type":"LinearAxis"},{"attributes":{},"id":"f0811953-591d-4239-81e3-d5c81c44aab6","type":"BasicTicker"},{"attributes":{"dimension":1,"plot":{"id":"db7bb4a8-e48f-4e36-b4fa-9d4a20a19d6c","subtype":"Figure","type":"Plot"},"ticker":{"id":"f0811953-591d-4239-81e3-d5c81c44aab6","type":"BasicTicker"}},"id":"77e22872-dc9f-408e-a6e0-4f44d49e6248","type":"Grid"},{"attributes":{"active_drag":"auto","active_inspect":"auto","active_multi":null,"active_scroll":"auto","active_tap":"auto","tools":[{"id":"d85e08c1-f2d6-4c7f-9ed3-9c41c560bbb3","type":"PanTool"},{"id":"dfa7e4f4-4ca7-4093-b6cb-22e6f614d565","type":"WheelZoomTool"},{"id":"cf9719ab-e4bd-42b2-98b1-1634a1fce775","type":"BoxZoomTool"},{"id":"dd377a0e-3077-41de-a904-674d05f483a8","type":"SaveTool"},{"id":"9bf3e9cb-526a-4a01-894b-ecafed930290","type":"ResetTool"},{"id":"e577f604-3608-4229-bbc4-17fb4d398a68","type":"HelpTool"}]},"id":"19cdb7eb-517d-44dd-a803-660b18856ab0","type":"Toolbar"},{"attributes":{"below":[{"id":"3653e9cb-bee7-498b-99fa-3e3ed5bc32c1","type":"LinearAxis"}],"left":[{"id":"cfcd0ddb-50f0-49b8-8364-ce47bc8babdb","type":"LinearAxis"}],"plot_height":400,"plot_width":400,"renderers":[{"id":"3653e9cb-bee7-498b-99fa-3e3ed5bc32c1","type":"LinearAxis"},{"id":"28e409bc-f0a2-448f-b0a4-bbc03cb17d8e","type":"Grid"},{"id":"cfcd0ddb-50f0-49b8-8364-ce47bc8babdb","type":"LinearAxis"},{"id":"77e22872-dc9f-408e-a6e0-4f44d49e6248","type":"Grid"},{"id":"ea149cba-8e39-44f7-8d28-5f5697615ce5","type":"BoxAnnotation"},{"id":"ecbe0a85-6058-4700-a8ab-79b5302705e6","type":"GlyphRenderer"}],"title":{"id":"c26383ff-0932-4a65-aee9-78dba83aefaf","type":"Title"},"toolbar":{"id":"19cdb7eb-517d-44dd-a803-660b18856ab0","type":"Toolbar"},"x_range":{"id":"3bb32985-5cd2-46ab-b64c-60de82d3a29d","type":"DataRange1d"},"x_scale":{"id":"0a962616-6a1c-415b-b6f0-e4f70b56afa1","type":"LinearScale"},"y_range":{"id":"ed0c1395-3fdd-47bd-b998-31d68f7cc29b","type":"Range1d"},"y_scale":{"id":"c527e5ea-30df-40e8-aadf-d77791139011","type":"LinearScale"}},"id":"db7bb4a8-e48f-4e36-b4fa-9d4a20a19d6c","subtype":"Figure","type":"Plot"},{"attributes":{"bottom_units":"screen","fill_alpha":{"value":0.5},"fill_color":{"value":"lightgrey"},"left_units":"screen","level":"overlay","line_alpha":{"value":1.0},"line_color":{"value":"black"},"line_dash":[4,4],"line_width":{"value":2},"plot":null,"render_mode":"css","right_units":"screen","top_units":"screen"},"id":"ea149cba-8e39-44f7-8d28-5f5697615ce5","type":"BoxAnnotation"},{"attributes":{},"id":"d85e08c1-f2d6-4c7f-9ed3-9c41c560bbb3","type":"PanTool"},{"attributes":{"children":[{"id":"f5eb8fe1-50e1-4e63-b51d-e3c7273ac371","type":"Slider"},{"id":"878ac893-ae76-4ef9-94f1-262a8fe8372b","type":"Slider"},{"id":"3ee5bc8a-534a-429b-8fbb-9f09c0657f7b","type":"Slider"},{"id":"b2fedb6c-f717-456a-9edb-637beddca4e2","type":"Slider"}]},"id":"c6a1f497-577c-42ac-8714-a2f6bafe60b3","type":"WidgetBox"},{"attributes":{"source":{"id":"77268198-bca1-4d34-b5d1-187e16adb2ba","type":"ColumnDataSource"}},"id":"054b799c-7c17-4993-918e-50a1560631c1","type":"CDSView"},{"attributes":{},"id":"dfa7e4f4-4ca7-4093-b6cb-22e6f614d565","type":"WheelZoomTool"},{"attributes":{"args":{"amp":{"id":"f5eb8fe1-50e1-4e63-b51d-e3c7273ac371","type":"Slider"},"freq":{"id":"878ac893-ae76-4ef9-94f1-262a8fe8372b","type":"Slider"},"offset":{"id":"b2fedb6c-f717-456a-9edb-637beddca4e2","type":"Slider"},"phase":{"id":"3ee5bc8a-534a-429b-8fbb-9f09c0657f7b","type":"Slider"},"source":{"id":"77268198-bca1-4d34-b5d1-187e16adb2ba","type":"ColumnDataSource"}},"code":"\n    var data = source.data;\n    var A = amp.value;\n    var k = freq.value;\n    var phi = phase.value;\n    var B = offset.value;\n    x = data['x']\n    y = data['y']\n    for (i = 0; i &lt; x.length; i++) {\n        y[i] = B + A*Math.sin(k*x[i]+phi);\n    }\n    source.change.emit();\n"},"id":"6200b343-73c0-4c7d-a789-7eecb38b15cd","type":"CustomJS"},{"attributes":{"overlay":{"id":"ea149cba-8e39-44f7-8d28-5f5697615ce5","type":"BoxAnnotation"}},"id":"cf9719ab-e4bd-42b2-98b1-1634a1fce775","type":"BoxZoomTool"},{"attributes":{},"id":"dd377a0e-3077-41de-a904-674d05f483a8","type":"SaveTool"},{"attributes":{"callback":null,"data":{"x":{"__ndarray__":"AAAAAAAAFMCamZmZmZkTwDQzMzMzMxPAzszMzMzMEsBoZmZmZmYSwAIAAAAAABLAnJmZmZmZEcA2MzMzMzMRwNDMzMzMzBDAamZmZmZmEMAEAAAAAAAQwDwzMzMzMw/AcGZmZmZmDsCkmZmZmZkNwNjMzMzMzAzADAAAAAAADMBAMzMzMzMLwHRmZmZmZgrAqJmZmZmZCcDczMzMzMwIwBAAAAAAAAjARDMzMzMzB8B4ZmZmZmYGwKyZmZmZmQXA4MzMzMzMBMAUAAAAAAAEwEgzMzMzMwPAfGZmZmZmAsCwmZmZmZkBwOTMzMzMzADAGAAAAAAAAMCYZmZmZmb+vwDNzMzMzPy/aDMzMzMz+7/QmZmZmZn5vzgAAAAAAPi/oGZmZmZm9r8IzczMzMz0v3AzMzMzM/O/2JmZmZmZ8b9AAAAAAADwv1DNzMzMzOy/IJqZmZmZ6b/wZmZmZmbmv8AzMzMzM+O/kAAAAAAA4L/AmpmZmZnZv2A0MzMzM9O/AJyZmZmZyb+AnpmZmZm5vwAAAAAAABS9gJSZmZmZuT8Al5mZmZnJP+AxMzMzM9M/QJiZmZmZ2T+g/v/////fP4AyMzMzM+M/sGVmZmZm5j/gmJmZmZnpPxDMzMzMzOw/QP//////7z84mZmZmZnxP9AyMzMzM/M/aMzMzMzM9D8AZmZmZmb2P5j///////c/MJmZmZmZ+T/IMjMzMzP7P2DMzMzMzPw/+GVmZmZm/j+Q////////P5TMzMzMzABAYJmZmZmZAUAsZmZmZmYCQPgyMzMzMwNAxP//////A0CQzMzMzMwEQFyZmZmZmQVAKGZmZmZmBkD0MjMzMzMHQMD//////wdAjMzMzMzMCEBYmZmZmZkJQCRmZmZmZgpA8DIzMzMzC0C8//////8LQIjMzMzMzAxAVJmZmZmZDUAgZmZmZmYOQOwyMzMzMw9AuP//////D0BCZmZmZmYQQKjMzMzMzBBADjMzMzMzEUB0mZmZmZkRQNr//////xFAQGZmZmZmEkCmzMzMzMwSQAwzMzMzMxNAcpmZmZmZE0A=","dtype":"float64","shape":[100]},"y":{"__ndarray__":"M5ng9YGv7j+k6yJ2QHDvP/89DJqU4O8/U+w3D1//7z+77F0TUczvP4RAxz3tR+8/9ChFMYZz7j8vigE6O1HtP+MS0N/y4+s/ysjielMv6j/DHtzduTfoP+WzHy0uAuY/vcDs/1aU4z9jGy7savTgP0DS8ENBUtw/eWK6fjtz1j/RTP8QyVrQP2QNt8oCMcQ/sDDoOTfjrT9vDJiCD0qlv13Utm04EMK/2i9I1rifzr9A5V0jcnDVv4qmJCQxWtu/eoWgu/x+4L9wys8Nrybjv13Rw/VkneW/6i5YLdHc57/U1qrZM9/pv81y6z9pn+u/HrTR6vYY7b83OBofF0juv9kVvYHCKe+/qZgv17e777/CQuDHgfzvv5NtLJt66++/FuFE382I779rHsX5d9Xuv/FVGqJD0+2/cGMtTMWE7L8zDQmPVO3qv5KoXZgDEem/Kv+/wpT05r8iGkZpbp3kv81BpReNEeK/7QZLdOiu3r96aCvpOuzYv1O7upXN6dK/FtU9I/9tyb8M0IvLro65vwAAAAAAABS9GcaLy66OuT8w0D0j/23JP++4upXN6dI/LGYr6Trs2D+7BEt06K7eP8VApReNEeI/LRlGaW6d5D9M/r/ClPTmP8unXZgDEek/hgwJj1Tt6j/fYi1MxYTsP31VGqJD0+0/FR7F+XfV7j/g4ETfzYjvP3xtLJt66+8/zELgx4H87z/SmC/Xt7vvPyIWvYHCKe8/njgaHxdI7j+jtNHq9hjtP25z6z9pn+s/kNeq2TPf6T/AL1gt0dznP0nSw/VkneU/ccvPDa8m4z+MhqC7/H7gP8yoJCQxWts/m+ddI3Jw1T+1NEjWuJ/OP1HZtm04EMI/ayCYgg9KpT+5HOg5N+Otv3QIt8oCMcS/Zkr/EMla0L8iYLp+O3PWvwLQ8ENBUty/Uxou7Gr04L/Av+z/VpTjv/2yHy0uAua/8h3c3bk36L8TyOJ6Uy/qv0YS0N/y4+u/r4kBOjtR7b+SKEUxhnPuv0BAxz3tR++/l+xdE1HM779P7DcPX//vvxs+DJqU4O+/3+sidkBw778=","dtype":"float64","shape":[100]}},"selected":{"id":"47e1a71a-20d7-4a0d-b637-6bf9e606bcaa","type":"Selection"},"selection_policy":{"id":"2332b11a-7b71-4744-95c1-1b4b2020fc49","type":"UnionRenderers"}},"id":"77268198-bca1-4d34-b5d1-187e16adb2ba","type":"ColumnDataSource"},{"attributes":{},"id":"9bf3e9cb-526a-4a01-894b-ecafed930290","type":"ResetTool"},{"attributes":{},"id":"47e1a71a-20d7-4a0d-b637-6bf9e606bcaa","type":"Selection"},{"attributes":{"callback":null,"end":10,"start":-10},"id":"ed0c1395-3fdd-47bd-b998-31d68f7cc29b","type":"Range1d"},{"attributes":{},"id":"e577f604-3608-4229-bbc4-17fb4d398a68","type":"HelpTool"},{"attributes":{},"id":"0a962616-6a1c-415b-b6f0-e4f70b56afa1","type":"LinearScale"},{"attributes":{"callback":{"id":"6200b343-73c0-4c7d-a789-7eecb38b15cd","type":"CustomJS"},"end":10,"start":0.1,"step":0.1,"title":"Frequency","value":1},"id":"878ac893-ae76-4ef9-94f1-262a8fe8372b","type":"Slider"},{"attributes":{"callback":{"id":"6200b343-73c0-4c7d-a789-7eecb38b15cd","type":"CustomJS"},"end":10,"start":0.1,"step":0.1,"title":"Amplitude","value":1},"id":"f5eb8fe1-50e1-4e63-b51d-e3c7273ac371","type":"Slider"},{"attributes":{"callback":{"id":"6200b343-73c0-4c7d-a789-7eecb38b15cd","type":"CustomJS"},"end":6.4,"start":0,"step":0.1,"title":"Phase","value":0},"id":"3ee5bc8a-534a-429b-8fbb-9f09c0657f7b","type":"Slider"},{"attributes":{"callback":{"id":"6200b343-73c0-4c7d-a789-7eecb38b15cd","type":"CustomJS"},"end":5,"start":-5,"step":0.1,"title":"Offset","value":0},"id":"b2fedb6c-f717-456a-9edb-637beddca4e2","type":"Slider"},{"attributes":{"children":[{"id":"db7bb4a8-e48f-4e36-b4fa-9d4a20a19d6c","subtype":"Figure","type":"Plot"},{"id":"c6a1f497-577c-42ac-8714-a2f6bafe60b3","type":"WidgetBox"}]},"id":"3bbc8d6d-6c57-4522-8362-257dd247a806","type":"Row"},{"attributes":{"callback":null},"id":"3bb32985-5cd2-46ab-b64c-60de82d3a29d","type":"DataRange1d"},{"attributes":{"plot":null,"text":""},"id":"c26383ff-0932-4a65-aee9-78dba83aefaf","type":"Title"}],"root_ids":["3bbc8d6d-6c57-4522-8362-257dd247a806"]},"title":"Bokeh Application","version":"0.13.0"}}
+        </script>
+
+<script type="text/javascript">
+          (function() {
+            var fn = function() {
+              Bokeh.safely(function() {
+                (function(root) {
+                  function embed_document(root) {
+
+                  var docs_json = document.getElementById('6ca8f35e-e901-4447-b64f-8583c062390a').textContent;
+                  var render_items = [{"docid":"d470d1db-38fb-4eb6-9d2c-517867b6febf","roots":{"3bbc8d6d-6c57-4522-8362-257dd247a806":"041fcd18-96f4-4db2-8d3c-cf250f22b40f"}}];
+                  root.Bokeh.embed.embed_items(docs_json, render_items);
+
+                  }
+                  if (root.Bokeh !== undefined) {
+                    embed_document(root);
+                  } else {
+                    var attempts = 0;
+                    var timer = setInterval(function(root) {
+                      if (root.Bokeh !== undefined) {
+                        embed_document(root);
+                        clearInterval(timer);
+                      }
+                      attempts++;
+                      if (attempts > 100) {
+                        console.log("Bokeh: ERROR: Unable to run BokehJS code because BokehJS library is missing")
+                        clearInterval(timer);
+                      }
+                    }, 10, root)
+                  }
+                })(window);
+              });
+            };
+            if (document.readyState != "loading") fn();
+            else document.addEventListener("DOMContentLoaded", fn);
+          })();
+        </script>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    
+    <a class="jiathis_button_tsina">新浪微博</a>
+    
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+</div>
+
+            
+    
+        <a href="http://leonardmac.momentjs/2018/08/29/bokeh嵌入hexo/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://leonardmac.momentjs/2018/08/29/bokeh嵌入hexo/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/08/30/2018-08-30-English-exercise-587day/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    English exercise
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2018/08/29/2018-08-29-English-exercise-586day/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">English exercise</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2018/08/29/bokeh嵌入hexo/" data-title="bokeh嵌入hexo" data-url="http://leonardmac.momentjs/2018/08/29/bokeh嵌入hexo/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/12/2019-02-12-English-exercise-753day/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-312599.jpg)" alt="English exercise" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/英语早操/">英语早操</a></p>
+                            <p class="item-title"><a href="/2019/02/12/2019-02-12-English-exercise-753day/" class="title">English exercise</a></p>
+                            <p class="item-date"><time datetime="2019-02-11T16:00:00.000Z" itemprop="datePublished">2019-02-12</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/11/2019-02-11-English-exercise-752day/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-376535.jpg)" alt="English exercise" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/英语早操/">英语早操</a></p>
+                            <p class="item-title"><a href="/2019/02/11/2019-02-11-English-exercise-752day/" class="title">English exercise</a></p>
+                            <p class="item-date"><time datetime="2019-02-10T16:00:00.000Z" itemprop="datePublished">2019-02-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/10/2019-02-10-English-exercise-751day/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-410988.jpg)" alt="English exercise" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/英语早操/">英语早操</a></p>
+                            <p class="item-title"><a href="/2019/02/10/2019-02-10-English-exercise-751day/" class="title">English exercise</a></p>
+                            <p class="item-date"><time datetime="2019-02-09T16:00:00.000Z" itemprop="datePublished">2019-02-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/09/2019-02-09-English-exercise-750day/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-136715.jpg)" alt="English exercise" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/英语早操/">英语早操</a></p>
+                            <p class="item-title"><a href="/2019/02/09/2019-02-09-English-exercise-750day/" class="title">English exercise</a></p>
+                            <p class="item-date"><time datetime="2019-02-08T16:00:00.000Z" itemprop="datePublished">2019-02-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/02/08/2019-02-08-English-exercise-749day/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-122049.jpg)" alt="English exercise" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/英语早操/">英语早操</a></p>
+                            <p class="item-title"><a href="/2019/02/08/2019-02-08-English-exercise-749day/" class="title">English exercise</a></p>
+                            <p class="item-date"><time datetime="2019-02-07T16:00:00.000Z" itemprop="datePublished">2019-02-08</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Todo/">Todo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysomething/">mysomething</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人/">个人</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网易云音乐/">网易云音乐</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/英语早操/">英语早操</a><span class="category-list-count">680</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/视频/">视频</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机技术/">计算机技术</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲散文章/">闲散文章</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/">二月 2019</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/01/">一月 2019</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/English/">English</a><span class="tag-list-count">679</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hunted/">Hunted</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NBA/">NBA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/">R</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Todo/">Todo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-jekyll/">hexo jekyll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人事物/">个人事物</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/励志/">励志</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化/">可视化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回忆/">回忆</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据分析/">数据分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树莓派/">树莓派</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电台/">电台</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/篮球/">篮球</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美文/">美文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机技术/">计算机技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语录/">语录</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/English/" style="font-size: 20px;">English</a> <a href="/tags/Hunted/" style="font-size: 10px;">Hunted</a> <a href="/tags/NBA/" style="font-size: 10px;">NBA</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/Todo/" style="font-size: 10px;">Todo</a> <a href="/tags/hexo-jekyll/" style="font-size: 10px;">hexo jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/music/" style="font-size: 13.33px;">music</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/video/" style="font-size: 16.67px;">video</a> <a href="/tags/个人事物/" style="font-size: 13.33px;">个人事物</a> <a href="/tags/励志/" style="font-size: 10px;">励志</a> <a href="/tags/可视化/" style="font-size: 10px;">可视化</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/天气预报/" style="font-size: 10px;">天气预报</a> <a href="/tags/数据分析/" style="font-size: 10px;">数据分析</a> <a href="/tags/树莓派/" style="font-size: 10px;">树莓派</a> <a href="/tags/电台/" style="font-size: 10px;">电台</a> <a href="/tags/篮球/" style="font-size: 10px;">篮球</a> <a href="/tags/美文/" style="font-size: 10px;">美文</a> <a href="/tags/计算机技术/" style="font-size: 10px;">计算机技术</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://music.163.com/#/user/home?id=32974594">网易云音乐</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ximalaya.com/3893464/album/258244">喜马拉雅</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016-2019 leonardmac<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/leonardmac0614">leonardmac | based on Icarus</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'leonardmac'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
