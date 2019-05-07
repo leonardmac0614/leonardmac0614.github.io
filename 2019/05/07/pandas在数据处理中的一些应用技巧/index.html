@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    
+    <title>pandas在数据处理中的一些应用技巧 | 李二狗的妖孽人生</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="工作学习中经常使用pandas,积累了一些使用技巧">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pandas在数据处理中的一些应用技巧">
+<meta property="og:url" content="http://leonardmac.momentjs/2019/05/07/pandas在数据处理中的一些应用技巧/index.html">
+<meta property="og:site_name" content="李二狗的妖孽人生">
+<meta property="og:description" content="工作学习中经常使用pandas,积累了一些使用技巧">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-05-07T09:57:19.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pandas在数据处理中的一些应用技巧">
+<meta name="twitter:description" content="工作学习中经常使用pandas,积累了一些使用技巧">
+    
+
+    
+        <link rel="alternate" href="/" title="李二狗的妖孽人生" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+        <script>
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "//hm.baidu.com/hm.js?eaf5895b4d7cf083ca944235170db342# enter Baidu Analytics hash key";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+    
+
+
+</head>
+</html>
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><div id="container">
+        
+<header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">李二狗的妖孽人生</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/.">Home</a>
+                
+                    <a class="main-nav-link" href="/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/css/images/avatar.png">
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/css/images/avatar.png">
+            <h2 id="name">leonardmac</h2>
+            <h3 id="title">工科狗</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>中国 上海</span>
+            <a id="follow" target="_blank" href="https://github.com/leonardmac0614/">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                632
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                22
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="http://github.com/leonardmac0614/" target="_blank" title="github" class="tooltip">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://twitter.com/leonard_mac0614" target="_blank" title="twitter" class="tooltip">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="http://weibo.com/leonardmac" target="_blank" title="weibo" class="tooltip">
+                            <i class="fa fa-weibo"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/" target="_blank" title="rss" class="tooltip">
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-pandas在数据处理中的一些应用技巧" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            pandas在数据处理中的一些应用技巧
+        </h1>
+    
+
+                
+                    <div class="article-meta">
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2019/05/07/pandas在数据处理中的一些应用技巧/">
+            <time datetime="2019-05-07T08:18:59.000Z" itemprop="datePublished">2019-05-07</time>
+        </a>
+    </div>
+
+
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/计算机技术/">计算机技术</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/python/">python</a>
+    </div>
+
+                    </div>
+                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <p>工作学习中经常使用pandas,积累了一些使用技巧<br><a id="more"></a></p>
+<hr>
+<h2 id="1-生成时间序列的series"><a href="#1-生成时间序列的series" class="headerlink" title="1. 生成时间序列的series"></a>1. 生成时间序列的series</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">ts = pd.Series(np.random.randn(<span class="number">1000</span>), index =pd.date_range(<span class="string">"1/1/2017"</span>,periods=<span class="number">1000</span>) )</span><br><span class="line">ts = ts.cumsum()</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="2-根据起始、结束时间、数据间隔生成北京时间的index"><a href="#2-根据起始、结束时间、数据间隔生成北京时间的index" class="headerlink" title="2.  根据起始、结束时间、数据间隔生成北京时间的index"></a>2.  根据起始、结束时间、数据间隔生成北京时间的index</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pytz</span><br><span class="line">tz = pytz.timezone(<span class="string">"Asia/Shanghai"</span>)</span><br><span class="line"></span><br><span class="line">start_dt = tz.localize(datetime(<span class="number">2017</span>,<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">end_dt   = tz.localize(datetime(<span class="number">2018</span>,<span class="number">1</span>,<span class="number">15</span>))</span><br><span class="line">pd.date_range(start_dt, end_dt , freq=<span class="string">"3600s"</span>)[:<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>]output:</span><br><span class="line">DatetimeIndex([<span class="string">'2017-01-01 00:00:00+08:00'</span>, <span class="string">'2017-01-01 01:00:00+08:00'</span>,</span><br><span class="line">               <span class="string">'2017-01-01 02:00:00+08:00'</span>, <span class="string">'2017-01-01 03:00:00+08:00'</span></span><br><span class="line">               ...</span><br><span class="line">               <span class="string">'2018-01-14 20:00:00+08:00'</span>, <span class="string">'2018-01-14 21:00:00+08:00'</span>,</span><br><span class="line">               <span class="string">'2018-01-14 22:00:00+08:00'</span>, <span class="string">'2018-01-14 23:00:00+08:00'</span>],</span><br><span class="line">              dtype=<span class="string">'datetime64[ns, Asia/Shanghai]'</span>, length=<span class="number">9096</span>, freq=<span class="string">'3600S'</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="3-concat-可按行、按列拼接df"><a href="#3-concat-可按行、按列拼接df" class="headerlink" title="3. concat(  可按行、按列拼接df)"></a>3. concat(  可按行、按列拼接df)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">new_df = pd.concat([df_a,df_b], axis = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p>注意：df_a和df_b 如果原来的index是带时区的Datetimeindex，concat之后有可能时区会去掉，需要格外小心。</p>
+<hr>
+<h2 id="4-Dataframe-按某列数值筛选数据"><a href="#4-Dataframe-按某列数值筛选数据" class="headerlink" title="4. Dataframe 按某列数值筛选数据"></a>4. Dataframe 按某列数值筛选数据</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data = df[(df.C &gt; <span class="number">0</span>) &amp; (df.D &lt; <span class="number">0</span>)]</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="5-Dataframe-按行按列进行某种自定义操作"><a href="#5-Dataframe-按行按列进行某种自定义操作" class="headerlink" title="5. Dataframe 按行按列进行某种自定义操作"></a>5. Dataframe 按行按列进行某种自定义操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df.apply(fun, axis = <span class="number">1</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fun</span><span class="params">(x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> y</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="6-Dataframe-统计数值中None"><a href="#6-Dataframe-统计数值中None" class="headerlink" title="6. Dataframe 统计数值中None "></a>6. Dataframe 统计数值中None </h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.isnull().sum()</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-Dataframe-按index-插值"><a href="#7-Dataframe-按index-插值" class="headerlink" title="7. Dataframe 按index 插值"></a>7. Dataframe 按index 插值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.interpolate(method = <span class="string">"pad"</span>)</span><br></pre></td></tr></table></figure>
+<p>参考文档：<a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.interpolate.html" target="_blank" rel="noopener">http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.interpolate.html</a></p>
+<hr>
+<h2 id="8-dataframe-变成字典"><a href="#8-dataframe-变成字典" class="headerlink" title="8. dataframe 变成字典"></a>8. dataframe 变成字典</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.to_dict(outtype = <span class="string">"list"</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="9-dataframe-按照index-过滤每天的某个时间段"><a href="#9-dataframe-按照index-过滤每天的某个时间段" class="headerlink" title="9. dataframe 按照index 过滤每天的某个时间段"></a>9. dataframe 按照index 过滤每天的某个时间段</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">start = datetime.time(<span class="number">10</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">end = datetime.time(<span class="number">21</span>,<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">new_df  = df.between_time(start, end)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="10-dataframe-按值检索"><a href="#10-dataframe-按值检索" class="headerlink" title="10. dataframe 按值检索 "></a>10. dataframe 按值检索 </h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[df == i].index.get_values()[<span class="number">0</span>]</span><br><span class="line">df[df.temp2.isin([<span class="number">2919.0</span>])]   <span class="comment"># 可以是数、字符串</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="11-改变某列的数据类型"><a href="#11-改变某列的数据类型" class="headerlink" title="11. 改变某列的数据类型"></a>11. 改变某列的数据类型</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. </span></span><br><span class="line">pd.to_numeric(pd.Series(list))</span><br><span class="line"><span class="comment">#2. </span></span><br><span class="line">df[<span class="string">'num'</span>] = df[<span class="string">'num'</span>].apply(<span class="keyword">lambda</span> x:int(x)) </span><br><span class="line"><span class="comment">#3. </span></span><br><span class="line">df[[<span class="string">'col2'</span>,<span class="string">'col3'</span>]] = df[[<span class="string">'col2'</span>,<span class="string">'col3'</span>]].apply(pd.to_numeric)</span><br><span class="line"><span class="comment">#4.</span></span><br><span class="line">df[[<span class="string">"col]]=df[["</span>col]].astype(int)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="12-dataframe-按行按列求和"><a href="#12-dataframe-按行按列求和" class="headerlink" title="12. dataframe 按行按列求和"></a>12. dataframe 按行按列求和</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'col_sum'</span>] = df.apply(<span class="keyword">lambda</span> x: x.sum(), axis=<span class="number">1</span>)  <span class="comment"># 横向求和，axis=1表示横向</span></span><br><span class="line">df.loc[<span class="string">'row_sum'</span>] = df.apply(<span class="keyword">lambda</span> x: x.sum())  <span class="comment"># loc获取一整列的数据，对一列数据进行求和</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="13-dataframae-删除某些行"><a href="#13-dataframae-删除某些行" class="headerlink" title="13. dataframae 删除某些行"></a>13. dataframae 删除某些行</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.drop(index)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="14-dataframe-按行变成list"><a href="#14-dataframe-按行变成list" class="headerlink" title="14. dataframe 按行变成list"></a>14. dataframe 按行变成list</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(df.as_matrix())</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="15-apply-函数"><a href="#15-apply-函数" class="headerlink" title="15. apply 函数"></a>15. apply 函数</h2><p>例：将TemperatureC 取一位有效数字<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dark_pre[<span class="string">"TemperatureC"</span>] = dark_pre[<span class="string">"TemperatureC"</span>].apply(<span class="keyword">lambda</span> x: round(x,<span class="number">1</span>))</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="16-series-map-：用于pandas中的字符串操作"><a href="#16-series-map-：用于pandas中的字符串操作" class="headerlink" title="16. series.map() ：用于pandas中的字符串操作"></a>16. series.map() ：用于pandas中的字符串操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">indoor_comfort[<span class="string">"appliance"</span>] = indoor_comfort[<span class="string">"title"</span>].map(<span class="keyword">lambda</span> x: x.split(<span class="string">"-室内"</span>)[<span class="number">0</span>].split(<span class="string">" 室内"</span>)[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="17-groupy-：跟据某列的值，对另一列的值进行操作"><a href="#17-groupy-：跟据某列的值，对另一列的值进行操作" class="headerlink" title="17. groupy()：跟据某列的值，对另一列的值进行操作"></a>17. groupy()：跟据某列的值，对另一列的值进行操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">indoor_comfort[indoor_comfort.high].groupby(<span class="string">"appliance"</span>)[<span class="string">"appliance"</span>].count().sort_values(ascending=<span class="keyword">False</span>).head(<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="18-按行-列求平均"><a href="#18-按行-列求平均" class="headerlink" title="18. 按行\列求平均"></a>18. 按行\列求平均</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data.mean(axis=<span class="number">1</span>)  <span class="comment"># 行</span></span><br><span class="line">data.mean(axis=<span class="number">0</span>) <span class="comment"># 列</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="19-dataframe-index-重复"><a href="#19-dataframe-index-重复" class="headerlink" title="19. dataframe index 重复"></a>19. dataframe index 重复</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查哪些重复</span></span><br><span class="line">pred_weather.index.value_counts()</span><br><span class="line"><span class="comment"># 解决办法：   </span></span><br><span class="line">pred_weather = pred_weather.loc[~pred_weather.index.duplicated(keep=<span class="string">'first'</span>)]</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="20-复制的index-报错"><a href="#20-复制的index-报错" class="headerlink" title="20. 复制的index 报错"></a>20. 复制的index 报错</h2><p>ValueError: cannot reindex from a duplicate axis<br>解决办法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">df[df.index.duplicated()]</span><br><span class="line">找到复制的index 去重：同<span class="number">13.</span></span><br><span class="line">或者直接去除，可选保留策略：</span><br><span class="line">```python</span><br><span class="line">df = df[~df.index.duplicated(keep=<span class="string">'last'</span>)]</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="21-需要匹配某些字段"><a href="#21-需要匹配某些字段" class="headerlink" title="21. 需要匹配某些字段"></a>21. 需要匹配某些字段</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pd.Series().str.contains(<span class="string">"2017-07"</span>,na=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="22-dataframe-修改columns"><a href="#22-dataframe-修改columns" class="headerlink" title="22. dataframe 修改columns"></a>22. dataframe 修改columns</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">df = df.rename(columns=&#123;<span class="string">'oldName1'</span>: <span class="string">'newName1'</span>, <span class="string">'oldName2'</span>: <span class="string">'newName2'</span>&#125;)</span><br><span class="line"><span class="comment"># Or rename the existing DataFrame (rather than creating a copy) </span></span><br><span class="line">df.rename(columns=&#123;<span class="string">'oldName1'</span>: <span class="string">'newName1'</span>, <span class="string">'oldName2'</span>: <span class="string">'newName2'</span>&#125;, inplace=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="23-sort-sort-index、sort-values"><a href="#23-sort-sort-index、sort-values" class="headerlink" title="23. sort(sort_index、sort_values)"></a>23. sort(sort_index、sort_values)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">22</span>]: df.sort_values(by=<span class="string">'B'</span>)</span><br><span class="line">Out[<span class="number">22</span>]: </span><br><span class="line">                   A         B         C         D</span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-03</span> <span class="number">-0.861849</span> <span class="number">-2.104569</span> <span class="number">-0.494929</span>  <span class="number">1.071804</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-04</span>  <span class="number">0.721555</span> <span class="number">-0.706771</span> <span class="number">-1.039575</span>  <span class="number">0.271860</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-01</span>  <span class="number">0.469112</span> <span class="number">-0.282863</span> <span class="number">-1.509059</span> <span class="number">-1.135632</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-02</span>  <span class="number">1.212112</span> <span class="number">-0.173215</span>  <span class="number">0.119209</span> <span class="number">-1.044236</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-06</span> <span class="number">-0.673690</span>  <span class="number">0.113648</span> <span class="number">-1.478427</span>  <span class="number">0.524988</span></span><br><span class="line"><span class="number">2013</span><span class="number">-01</span><span class="number">-05</span> <span class="number">-0.424972</span>  <span class="number">0.567020</span>  <span class="number">0.276232</span> <span class="number">-1.087401</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="24-按行和列选取"><a href="#24-按行和列选取" class="headerlink" title="24.  按行和列选取"></a>24.  按行和列选取</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.loc[<span class="string">"2018/6/14"</span>:<span class="string">"2018/6/15"</span>,[<span class="string">"hum1"</span>,<span class="string">"hum2"</span>]]</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="25-dataframe-重塑"><a href="#25-dataframe-重塑" class="headerlink" title="25. dataframe 重塑"></a>25. dataframe 重塑</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">weather.pivot(index=<span class="string">"date"</span>,columns=<span class="string">"hour"</span>,values=<span class="string">"TemperatureC"</span>)</span><br><span class="line">weather.pivot(index = <span class="string">"date"</span>,columns=<span class="string">"hour"</span>)  <span class="comment"># 带value 只取这列，不带取所有的列</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="26-pipe-、assign"><a href="#26-pipe-、assign" class="headerlink" title="26. pipe 、assign"></a>26. pipe 、assign</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">df = (pd.read_csv(fp)</span><br><span class="line">            .rename(columns=str.lower)</span><br><span class="line">            .drop(<span class="string">'unnamed: 36'</span>, axis=<span class="number">1</span>)</span><br><span class="line">            .pipe(extract_city_name)</span><br><span class="line">            .pipe(time_to_datetime, [<span class="string">'dep_time'</span>, <span class="string">'arr_time'</span>, <span class="string">'crs_arr_time'</span>, <span class="string">'crs_dep_time'</span>])</span><br><span class="line">            .assign(fl_date=<span class="keyword">lambda</span> x: pd.to_datetime(x[<span class="string">'fl_date'</span>]),</span><br><span class="line">                    dest=<span class="keyword">lambda</span> x: pd.Categorical(x[<span class="string">'dest'</span>]),</span><br><span class="line">                    origin=<span class="keyword">lambda</span> x: pd.Categorical(x[<span class="string">'origin'</span>]),</span><br><span class="line">                    tail_num=<span class="keyword">lambda</span> x: pd.Categorical(x[<span class="string">'tail_num'</span>]),</span><br><span class="line">                    unique_carrier=<span class="keyword">lambda</span> x: pd.Categorical(x[<span class="string">'unique_carrier'</span>]),</span><br><span class="line">                    cancellation_code=<span class="keyword">lambda</span> x: pd.Categorical(x[<span class="string">'cancellation_code'</span>])))</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="27-resample"><a href="#27-resample" class="headerlink" title="27. resample "></a>27. resample </h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">weather.resample(<span class="string">"W"</span>).agg([<span class="string">"mean"</span>,<span class="string">"max"</span>,<span class="string">"min"</span>]).head()</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="28-Rolling-Expanding-EW"><a href="#28-Rolling-Expanding-EW" class="headerlink" title="28. Rolling / Expanding / EW"></a>28. Rolling / Expanding / EW</h2><hr>
+<h2 id="29-根据一列的值的范围-，对另一列操作"><a href="#29-根据一列的值的范围-，对另一列操作" class="headerlink" title="29. 根据一列的值的范围 ，对另一列操作"></a>29. 根据一列的值的范围 ，对另一列操作</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.groupby(pd.cut(df[<span class="string">'A'</span>], np.arange(<span class="number">0</span>, <span class="number">101</span>, <span class="number">10</span>)))[<span class="string">'B'</span>].sum()</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="30-Consider-a-DataFrame-df-where-there-is-an-integer-column-‘X’"><a href="#30-Consider-a-DataFrame-df-where-there-is-an-integer-column-‘X’" class="headerlink" title="30. Consider a DataFrame df where there is an integer column ‘X’:"></a>30. Consider a DataFrame <code>df</code> where there is an integer column ‘X’:</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pd.DataFrame(&#123;<span class="string">'X'</span>: [<span class="number">7</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">4</span>]&#125;)</span><br></pre></td></tr></table></figure>
+<p>For each value, count the difference back to the previous zero (or the start of the Series, whichever is closer). These values should therefore be <code>[1, 2, 0, 1, 2, 3, 4, 0, 1, 2]</code>. Make this a new column ‘Y’.<br>方法一：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = (df[<span class="string">'X'</span>] != <span class="number">0</span>).cumsum()</span><br><span class="line">y = x != x.shift()</span><br><span class="line">df[<span class="string">'Y'</span>] = y.groupby((y != y.shift()).cumsum()).cumsum()</span><br></pre></td></tr></table></figure></p>
+<p>方法二：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Y'</span>] = df.groupby((df[<span class="string">'X'</span>] == <span class="number">0</span>).cumsum()).cumcount()</span><br><span class="line"><span class="comment"># We're off by one before we reach the first zero.</span></span><br><span class="line">first_zero_idx = (df[<span class="string">'X'</span>] == <span class="number">0</span>).idxmax()</span><br><span class="line">df[<span class="string">'Y'</span>].iloc[<span class="number">0</span>:first_zero_idx] += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="31-把某列的字符串拆成两列"><a href="#31-把某列的字符串拆成两列" class="headerlink" title="31. 把某列的字符串拆成两列"></a>31. 把某列的字符串拆成两列</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1. </span></span><br><span class="line">df[[<span class="string">"From"</span>,<span class="string">"To"</span>]] = df.From_To.str.split(<span class="string">"_"</span>,expand = <span class="keyword">True</span>).rename(columns=&#123;<span class="number">0</span>:<span class="string">"From"</span>,<span class="number">1</span>:<span class="string">"To"</span>&#125;)</span><br><span class="line">df[<span class="string">'ahu'</span>] = df[<span class="string">"ahu"</span>].str.strip()</span><br><span class="line"><span class="comment">#2. </span></span><br><span class="line">df[<span class="string">"From"</span>] = df[<span class="string">"From_To"</span>].apply(<span class="keyword">lambda</span> x:x.split(<span class="string">'_'</span>)[<span class="number">0</span>]) </span><br><span class="line">df[<span class="string">"To"</span>] = df[<span class="string">"From_To"</span>].apply(<span class="keyword">lambda</span> x:x.split(<span class="string">'_'</span>)[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="32-删除字符串中的非法字符"><a href="#32-删除字符串中的非法字符" class="headerlink" title="32. 删除字符串中的非法字符"></a>32. 删除字符串中的非法字符</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">'Airline'</span>].str.extract(<span class="string">'([a-zA-Z\s]+)'</span>, expand=<span class="keyword">False</span>).str.strip()</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="33-将某一columns-里的list-拓展成新的很多列"><a href="#33-将某一columns-里的list-拓展成新的很多列" class="headerlink" title="33. 将某一columns 里的list 拓展成新的很多列"></a>33. 将某一columns 里的list 拓展成新的很多列</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">delays = df[<span class="string">'RecentDelays'</span>].apply(pd.Series)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="34-把df-中的True-变成False"><a href="#34-把df-中的True-变成False" class="headerlink" title="34. 把df 中的True 变成False"></a>34. 把df 中的True 变成False</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.apply(<span class="keyword">lambda</span> x:x== <span class="number">0</span>) <span class="comment">#默认True 为1 ，False 为0</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="35-根据一列的值、划分区间生成另外一列的值"><a href="#35-根据一列的值、划分区间生成另外一列的值" class="headerlink" title="35. 根据一列的值、划分区间生成另外一列的值"></a>35. 根据一列的值、划分区间生成另外一列的值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fenzu = [round(i,<span class="number">1</span>) <span class="keyword">for</span> i <span class="keyword">in</span> np.arange(<span class="number">15</span>,<span class="number">38</span>,<span class="number">2.3</span>)]</span><br><span class="line">w_check[<span class="string">"set_sug"</span>] = pd.cut(w_check[<span class="string">"TemperatureC"</span>],fenzu,right=<span class="keyword">False</span>,labels=list(range(<span class="number">6</span>,<span class="number">15</span>)))</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="36-DataFrame-的index-切换时区"><a href="#36-DataFrame-的index-切换时区" class="headerlink" title="36. DataFrame 的index 切换时区"></a>36. DataFrame 的index 切换时区</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.index.tz_convert(<span class="string">"Asia/Shanghai"</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="37-DataFrame-根据一列的值-修改另一列的值"><a href="#37-DataFrame-根据一列的值-修改另一列的值" class="headerlink" title="37.  DataFrame 根据一列的值 修改另一列的值"></a>37.  DataFrame 根据一列的值 修改另一列的值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.where(m,df )</span><br></pre></td></tr></table></figure>
+<p>参考文档 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.mask.html#pandas.DataFrame.mask" target="_blank" rel="noopener">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.mask.html#pandas.DataFrame.mask</a></p>
+<hr>
+<h2 id="38-修改dataframe-的部分行的值"><a href="#38-修改dataframe-的部分行的值" class="headerlink" title="38. 修改dataframe 的部分行的值"></a>38. 修改dataframe 的部分行的值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmp_status.loc[index,<span class="string">"diff"</span>] = <span class="number">120</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="39-根据某列中的值生成另一种类型的值"><a href="#39-根据某列中的值生成另一种类型的值" class="headerlink" title="39.  根据某列中的值生成另一种类型的值"></a>39.  根据某列中的值生成另一种类型的值</h2><p>例：将chiller中status_switch 为“运行”、“停止”两种，需要改变成1、0变量<br>方法一：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">level_map = &#123;<span class="string">"运行"</span>: <span class="number">1</span>, <span class="string">"停止"</span>: <span class="number">0</span>&#125;</span><br><span class="line">chiller[<span class="string">"status_switch"</span>] = chiller[<span class="string">"status_switch"</span>].map(level_map)</span><br></pre></td></tr></table></figure></p>
+<p>方法二：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chiller[chiller[[<span class="string">"status_switch"</span>]]==<span class="string">"运行"</span>]=<span class="number">1</span></span><br><span class="line">chiller[chiller[[<span class="string">"status_switch"</span>]]==<span class="string">"停止"</span>]=<span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="40-将小于某值的置为该值"><a href="#40-将小于某值的置为该值" class="headerlink" title="40. 将小于某值的置为该值"></a>40. 将小于某值的置为该值</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">series.clip(lower=<span class="number">0</span>, axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+    <div class="jiathis_style">
+    <span class="jiathis_txt">分享到：</span>
+    
+    <a class="jiathis_button_tsina">新浪微博</a>
+    
+    <a class="jiathis_button_weixin">微信</a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+    <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<style>
+    .jiathis_style div:first-child:not(.jiadiv_01) {
+        width: auto !important;
+        border: none !important;
+    }
+    .jiathis_style .jiadiv_01 {
+        margin: 10px 0;
+        border-radius: 4px;
+        border: #e1e1e1 solid 1px;
+    }
+    .jiathis_style .jiadiv_01 div:first-child {
+        display: none;
+    }
+    .jiathis_style .jiadiv_02 {
+        padding: 7px 0 !important;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle {
+        width: 85px;
+        border: none;
+        height: auto;
+        margin: 3px 10px;
+        padding: 6px 10px;
+        border-radius: 4px;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:hover {
+        border: none;
+    }
+    .jiathis_style .jiadiv_02 .jiatitle:nth-child(even) {
+        margin-left: 0;
+    }
+    .jiathis_style .jtico:hover {
+        opacity: 1;
+    }
+    .jiathis_style .ckepopBottom,
+    .jiathis_style .centerBottom {
+        width: auto !important;
+        padding: 5px;
+        background: #f7f7f7;
+    }
+</style>
+
+
+
+</div>
+
+            
+    
+        <a href="http://leonardmac.momentjs/2019/05/07/pandas在数据处理中的一些应用技巧/#comments" class="article-comment-link ds-thread-count" data-thread-key="http://leonardmac.momentjs/2019/05/07/pandas在数据处理中的一些应用技巧/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/2018/12/09/2018-12-09-English-exercise-688day/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">English exercise</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div class="ds-thread" data-thread-key="2019/05/07/pandas在数据处理中的一些应用技巧/" data-title="pandas在数据处理中的一些应用技巧" data-url="http://leonardmac.momentjs/2019/05/07/pandas在数据处理中的一些应用技巧/"></div>
+    <style>
+        #ds-thread #ds-reset .ds-textarea-wrapper {
+            background: none;
+        }
+        #ds-reset .ds-avatar img {
+            box-shadow: none;
+        }
+        #ds-reset .ds-gradient-bg {
+            background: #f7f7f7;
+        }
+        #ds-thread #ds-reset li.ds-tab a {
+            border-radius: 3px;
+        }
+        #ds-thread #ds-reset .ds-post-button {
+            color: white;
+            border: none;
+            box-shadow: none;
+            background: #d32;
+            text-shadow: none;
+            font-weight: normal;
+            font-family: 'Microsoft Yahei';
+        }
+        #ds-thread #ds-reset .ds-post-button:hover {
+            color: white;
+            background: #DE594C;
+        }
+        #ds-thread #ds-reset .ds-post-button:active {
+            background: #d32;
+        }
+        #ds-smilies-tooltip ul.ds-smilies-tabs li a.ds-current {
+            color: white;
+            background: #d32;
+            box-shadow: none;
+            text-shadow: none;
+            font-weight: normal;
+        }
+    </style>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2019/05/07/pandas在数据处理中的一些应用技巧/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/计算机技术/">计算机技术</a></p>
+                            <p class="item-title"><a href="/2019/05/07/pandas在数据处理中的一些应用技巧/" class="title">pandas在数据处理中的一些应用技巧</a></p>
+                            <p class="item-date"><time datetime="2019-05-07T08:18:59.000Z" itemprop="datePublished">2019-05-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/09/2018-12-09-English-exercise-688day/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-722108.jpg)" alt="English exercise" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/英语早操/">英语早操</a></p>
+                            <p class="item-title"><a href="/2018/12/09/2018-12-09-English-exercise-688day/" class="title">English exercise</a></p>
+                            <p class="item-date"><time datetime="2018-12-08T16:00:00.000Z" itemprop="datePublished">2018-12-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/08/2018-12-08-English-exercise-687day/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-271879.jpg)" alt="English exercise" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/英语早操/">英语早操</a></p>
+                            <p class="item-title"><a href="/2018/12/08/2018-12-08-English-exercise-687day/" class="title">English exercise</a></p>
+                            <p class="item-date"><time datetime="2018-12-07T16:00:00.000Z" itemprop="datePublished">2018-12-08</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/07/2018-12-07-English-exercise-686day/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-18053.jpg)" alt="English exercise" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/英语早操/">英语早操</a></p>
+                            <p class="item-title"><a href="/2018/12/07/2018-12-07-English-exercise-686day/" class="title">English exercise</a></p>
+                            <p class="item-date"><time datetime="2018-12-06T16:00:00.000Z" itemprop="datePublished">2018-12-07</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/12/06/2018-12-06-English-exercise-685day/" class="thumbnail">
+    
+    
+        <span style="background-image:url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-407632.jpg)" alt="English exercise" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/英语早操/">英语早操</a></p>
+                            <p class="item-title"><a href="/2018/12/06/2018-12-06-English-exercise-685day/" class="title">English exercise</a></p>
+                            <p class="item-date"><time datetime="2018-12-05T16:00:00.000Z" itemprop="datePublished">2018-12-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Todo/">Todo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysomething/">mysomething</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/个人/">个人</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网易云音乐/">网易云音乐</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/英语早操/">英语早操</a><span class="category-list-count">615</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/视频/">视频</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机技术/">计算机技术</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/闲散文章/">闲散文章</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">十二月 2018</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">十一月 2018</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">十月 2018</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">八月 2018</a><span class="archive-list-count">34</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">七月 2018</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">四月 2018</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">三月 2018</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">二月 2018</a><span class="archive-list-count">28</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">十一月 2017</a><span class="archive-list-count">30</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">26</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a><span class="archive-list-count">29</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">33</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">22</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/English/">English</a><span class="tag-list-count">614</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hunted/">Hunted</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NBA/">NBA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/R/">R</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Todo/">Todo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo-jekyll/">hexo jekyll</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/music/">music</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/video/">video</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/个人事物/">个人事物</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/励志/">励志</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/可视化/">可视化</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/回忆/">回忆</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/天气预报/">天气预报</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/数据分析/">数据分析</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树莓派/">树莓派</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电台/">电台</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/篮球/">篮球</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/美文/">美文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/计算机技术/">计算机技术</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/语录/">语录</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/English/" style="font-size: 20px;">English</a> <a href="/tags/Hunted/" style="font-size: 10px;">Hunted</a> <a href="/tags/NBA/" style="font-size: 10px;">NBA</a> <a href="/tags/R/" style="font-size: 10px;">R</a> <a href="/tags/Todo/" style="font-size: 10px;">Todo</a> <a href="/tags/hexo-jekyll/" style="font-size: 10px;">hexo jekyll</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/music/" style="font-size: 13.33px;">music</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/video/" style="font-size: 16.67px;">video</a> <a href="/tags/个人事物/" style="font-size: 13.33px;">个人事物</a> <a href="/tags/励志/" style="font-size: 10px;">励志</a> <a href="/tags/可视化/" style="font-size: 10px;">可视化</a> <a href="/tags/回忆/" style="font-size: 10px;">回忆</a> <a href="/tags/天气预报/" style="font-size: 10px;">天气预报</a> <a href="/tags/数据分析/" style="font-size: 10px;">数据分析</a> <a href="/tags/树莓派/" style="font-size: 10px;">树莓派</a> <a href="/tags/电台/" style="font-size: 10px;">电台</a> <a href="/tags/篮球/" style="font-size: 10px;">篮球</a> <a href="/tags/美文/" style="font-size: 10px;">美文</a> <a href="/tags/计算机技术/" style="font-size: 10px;">计算机技术</a> <a href="/tags/语录/" style="font-size: 10px;">语录</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://music.163.com/#/user/home?id=32974594">网易云音乐</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://www.ximalaya.com/3893464/album/258244">喜马拉雅</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+
+
+
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016-2019 leonardmac<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/leonardmac0614">leonardmac | based on Icarus</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script type="text/javascript">
+    var duoshuoQuery = {short_name:'leonardmac'};
+    (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+    </script>
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</body>
+</html>
